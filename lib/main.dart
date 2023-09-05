@@ -48,10 +48,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    //todo make mobile friendly version
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Center(
+    return SingleChildScrollView(
+        child: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -127,7 +129,8 @@ class ShowsView extends StatelessWidget {
             onTap: () {
               onUrlTapped(show.url);
             },
-            child: Row(
+            child: Wrap(
+              direction: Axis.horizontal,
               children: [
                 DefaultTextStyle(
                   style: TextStyle(

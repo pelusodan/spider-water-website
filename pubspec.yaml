@@ -28,13 +28,16 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/img/face-pic.png
     - assets/img/damn-attempt.gif
     - assets/audio/raining-beat.wav
     - assets/img/stew1.jpg
     - assets/img/stew2.jpg
     - assets/img/stew3.jpg
     - assets/img/stew4.jpg
+    - assets/img/dan.png
+    - assets/img/emma.png
+    - assets/img/stin.png
+    - assets/img/chuck.png
   fonts:
     - family: Blockstepped
       fonts:

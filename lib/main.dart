@@ -75,12 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        brightness: Brightness.light,
         tabBarTheme: TabBarTheme(
-          indicator: UnderlineTabIndicator(
-            borderSide: BorderSide(color: Colors.white),
+          indicator: const UnderlineTabIndicator(
+            borderSide: BorderSide(color: Colors.transparent),
           ),
-          labelColor: Colors.white,
+          labelColor: Colors.black,
           labelStyle: TextStyle(
             color: Colors.black,
             fontSize: screenHeight / 50,
@@ -92,46 +91,55 @@ class _MyHomePageState extends State<MyHomePage> {
             fontFamily: 'Blockstepped',
           ),
         ),
-        primaryColor: Colors.white,
       ),
       home: DefaultTabController(
           length: 3,
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              title: DefaultTextStyle(
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: screenHeight / 8,
-                  fontFamily: 'Blockstepped',
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText('spider water',
-                        speed: const Duration(milliseconds: 500)),
-                  ],
-                  isRepeatingAnimation: false,
-                ),
-              ),
-              toolbarHeight: 150,
-              backgroundColor: Colors.black,
-              bottom: const TabBar(tabs: <Widget>[
-                Tab(
-                  text: "home",
-                ),
-                Tab(
-                  text: "the vibe",
-                ),
-                Tab(
-                  text: "the humdingers",
-                )
-              ]),
-            ),
+                shadowColor: Colors.transparent,
+                toolbarHeight: 0,
+                backgroundColor: Colors.white,
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(screenHeight / 18),
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: TabBar(
+                        isScrollable: true,
+                        tabAlignment: TabAlignment.start,
+                        tabs: <Widget>[
+                          Tab(
+                            text: "home",
+                          ),
+                          Tab(
+                            text: "the vibe",
+                          ),
+                          Tab(
+                            text: "the humdingers",
+                          )
+                        ]),
+                  ),
+                )),
             body: TabBarView(children: <Widget>[
               SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const BobbingHead(),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: screenHeight / 8,
+                        fontFamily: 'Blockstepped',
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText('spider water',
+                              speed: const Duration(milliseconds: 500)),
+                        ],
+                        isRepeatingAnimation: false,
+                      ),
+                    ),
                     const Padding(padding: EdgeInsets.all(20)),
                     ShowsView(screenHeight),
                     const Padding(padding: EdgeInsets.all(40)),

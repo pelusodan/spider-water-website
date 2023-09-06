@@ -29,6 +29,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/img/face-pic.png
+    - assets/img/damn-attempt.gif
     - assets/audio/raining-beat.wav
   fonts:
     - family: Blockstepped

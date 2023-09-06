@@ -6,8 +6,9 @@ import 'main.dart';
 
 class ShowsView extends StatelessWidget {
   final double screenHeight;
+  final bool isMobile;
 
-  ShowsView(this.screenHeight);
+  ShowsView(this.screenHeight, [this.isMobile = false]);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ShowsView extends StatelessWidget {
                 DefaultTextStyle(
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: screenHeight / 23,
+                    fontSize: isMobile ? 20 : screenHeight / 23,
                     fontFamily: 'Blockstepped',
                   ),
                   child: Text(
@@ -40,7 +41,7 @@ class ShowsView extends StatelessWidget {
                 DefaultTextStyle(
                   style: TextStyle(
                     color: Colors.red,
-                    fontSize: screenHeight / 30,
+                    fontSize: isMobile ? 16 : screenHeight / 30,
                     fontFamily: 'Blockstepped',
                   ),
                   child: Text(

@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 toolbarHeight: 0,
                 backgroundColor: Colors.white,
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(screenHeight / 18),
+                  preferredSize: Size.fromHeight(screenHeight / 16),
                   child: const Align(
                     alignment: Alignment.centerLeft,
                     child: TabBar(
@@ -94,9 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Tab(
                             text: "the vibe",
-                          ),
-                          Tab(
-                            text: "the humdingers",
                           )
                         ]),
                   ),
@@ -104,14 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
             body: TabBarView(children: <Widget>[
               HomePageContent(),
               InstaContent(),
-              SecondPage(),
             ]),
           )),
     );
-  }
-
-  Widget SecondPage() {
-    return Text("todo");
   }
 }
 

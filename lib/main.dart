@@ -99,11 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: GestureDetector(
                 onTap: () => {
-                  if (player.playing) {
-                    player.pause()
-                  } else {
-                    player.play()
-                  }
+                  if (player.playing) {player.pause()} else {player.play()}
                 },
                 child: const Text(
                   "cambridge ma - synth pop for debutants",
@@ -116,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> playMusic() async {
     player = AudioPlayer();
-    final duration = await player.setFilePath('assets/audio/raining-beat.wav');
+    final duration = await player.setAsset('assets/audio/raining-beat.wav');
     await player.setLoopMode(LoopMode.all);
   }
 }

@@ -1,5 +1,5 @@
 name: spider_water
-description: synth rock for debutants
+description: A new Flutter project.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -13,7 +13,6 @@ dependencies:
   animated_text_kit: ^4.2.1
   url_launcher: ^6.1.5
   intl: ^0.18.1
-  flutter_insta: ^1.0.1
 
 
 
@@ -29,7 +28,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/img/face-pic.png
-    - assets/img/damn-attempt.gif
   fonts:
     - family: Blockstepped
       fonts:

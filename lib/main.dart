@@ -1,16 +1,19 @@
 import 'dart:js' as js;
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:spider_water/insta_content.dart';
+import 'package:intl/intl.dart';
+import 'package:spider_water/shows.dart';
 
-import 'home_page_content.dart';
+import 'bobbing_head.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class DraggableScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
@@ -22,6 +25,7 @@ class DraggableScrollBehavior extends MaterialScrollBehavior {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,65 +53,97 @@ class _MyHomePageState extends State<MyHomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return mainPageContent(screenWidth, screenHeight);
-  }
-
-  Widget mainPageContent(double screenWidth, double screenHeight) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        tabBarTheme: TabBarTheme(
-          indicator: const UnderlineTabIndicator(
-            borderSide: BorderSide(color: Colors.transparent),
+    return SingleChildScrollView(
+        child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const BobbingHead(),
+          DefaultTextStyle(
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: screenHeight / 8,
+              fontFamily: 'Blockstepped',
+            ),
+            child: AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText('spider water',
+                    speed: const Duration(milliseconds: 500)),
+              ],
+              isRepeatingAnimation: false,
+            ),
           ),
-          labelColor: Colors.black,
-          labelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: screenHeight / 50,
-            fontFamily: 'Blockstepped',
+          const Padding(padding: EdgeInsets.all(20)),
+          ShowsView(screenHeight),
+          const Padding(padding: EdgeInsets.all(40)),
+          DefaultTextStyle(
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: screenHeight / 40,
+              fontFamily: 'Blockstepped',
+            ),
+            child: const Text(
+              "cambridge ma - synth pop for debutants",
+            ),
           ),
-          unselectedLabelStyle: TextStyle(
-            color: Colors.black,
-            fontSize: screenHeight / 50,
-            fontFamily: 'Blockstepped',
-          ),
-        ),
+        ],
       ),
-      home: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-                shadowColor: Colors.transparent,
-                toolbarHeight: 0,
-                backgroundColor: Colors.white,
-                bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(screenHeight / 16),
-                  child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: TabBar(
-                        isScrollable: true,
-                        tabAlignment: TabAlignment.start,
-                        tabs: <Widget>[
-                          Tab(
-                            text: "home",
-                          ),
-                          Tab(
-                            text: "the vibe",
-                          )
-                        ]),
-                  ),
-                )),
-            body: TabBarView(children: <Widget>[
-              HomePageContent(),
-              InstaContent(),
-            ]),
-          )),
-    );
+    ));
   }
 }
 
 void onUrlTapped(String? repoLink) {
   if (repoLink == null) return;
   js.context.callMethod('open', [repoLink]);
+}
+
+class ShowsView extends StatelessWidget {
+  final double screenHeight;
+
+  ShowsView(this.screenHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    var futureDates =
+        ShowList.where((element) => element.date.isAfter(DateTime.now()))
+            .toList();
+    final DateFormat formatter = DateFormat('M-dd');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (var show in futureDates)
+          GestureDetector(
+            onTap: () {
+              onUrlTapped(show.url);
+            },
+            child: Wrap(
+              direction: Axis.horizontal,
+              children: [
+                DefaultTextStyle(
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: screenHeight / 23,
+                    fontFamily: 'Blockstepped',
+                  ),
+                  child: Text(
+                    "-${show.title}",
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(5)),
+                DefaultTextStyle(
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: screenHeight / 30,
+                    fontFamily: 'Blockstepped',
+                  ),
+                  child: Text(
+                    "${formatter.format(show.date)} @ ${DateFormat.jm().format(show.date)}",
+                  ),
+                ),
+              ],
+            ),
+          )
+      ],
+    );
+  }
 }

@@ -68,46 +68,100 @@ class _MyHomePageState extends State<MyHomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return SingleChildScrollView(
-        child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const BobbingHead(),
-          DefaultTextStyle(
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: screenHeight / 8,
-              fontFamily: 'Blockstepped',
-            ),
-            child: AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText('spider water',
-                    speed: const Duration(milliseconds: 500)),
-              ],
-              isRepeatingAnimation: false,
-            ),
+    return mainPageContent(screenWidth, screenHeight);
+  }
+
+  Widget mainPageContent(double screenWidth, double screenHeight) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        tabBarTheme: TabBarTheme(
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(color: Colors.white),
           ),
-          const Padding(padding: EdgeInsets.all(20)),
-          ShowsView(screenHeight),
-          const Padding(padding: EdgeInsets.all(40)),
-          DefaultTextStyle(
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: screenHeight / 40,
-                fontFamily: 'Blockstepped',
-              ),
-              child: GestureDetector(
-                onTap: () => {
-                  if (player.playing) {player.pause()} else {player.play()}
-                },
-                child: const Text(
-                  "cambridge ma - synth pop for debutants",
-                ),
-              )),
-        ],
+          labelColor: Colors.white,
+          labelStyle: TextStyle(
+            color: Colors.black,
+            fontSize: screenHeight / 50,
+            fontFamily: 'Blockstepped',
+          ),
+          unselectedLabelStyle: TextStyle(
+            color: Colors.black,
+            fontSize: screenHeight / 50,
+            fontFamily: 'Blockstepped',
+          ),
+        ),
+        primaryColor: Colors.white,
       ),
-    ));
+      home: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            appBar: AppBar(
+              title: DefaultTextStyle(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: screenHeight / 8,
+                  fontFamily: 'Blockstepped',
+                ),
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText('spider water',
+                        speed: const Duration(milliseconds: 500)),
+                  ],
+                  isRepeatingAnimation: false,
+                ),
+              ),
+              toolbarHeight: 150,
+              backgroundColor: Colors.black,
+              bottom: const TabBar(tabs: <Widget>[
+                Tab(
+                  text: "home",
+                ),
+                Tab(
+                  text: "the vibe",
+                ),
+                Tab(
+                  text: "the humdingers",
+                )
+              ]),
+            ),
+            body: TabBarView(children: <Widget>[
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const BobbingHead(),
+                    const Padding(padding: EdgeInsets.all(20)),
+                    ShowsView(screenHeight),
+                    const Padding(padding: EdgeInsets.all(40)),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: screenHeight / 40,
+                        fontFamily: 'Blockstepped',
+                      ),
+                      child: GestureDetector(
+                        onTap: () => {
+                          if (player.playing) {player.pause()} else {player.play()}
+                        },
+                        child: const Text(
+                          "cambridge ma - synth pop for debutants",
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SecondPage(),
+              SecondPage(),
+            ]),
+          )),
+    );
+  }
+
+  Widget SecondPage() {
+    return Text("todo");
   }
 
   Future<void> playMusic() async {

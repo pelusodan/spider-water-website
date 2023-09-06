@@ -2,6 +2,7 @@ import 'dart:js' as js;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:spider_water/insta_content.dart';
 
 import 'home_page_content.dart';
 
@@ -102,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )),
             body: TabBarView(children: <Widget>[
               HomePageContent(),
-              SecondPage(),
+              InstaContent(),
               SecondPage(),
             ]),
           )),

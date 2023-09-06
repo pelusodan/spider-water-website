@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:spider_water/shows_view.dart';
 
 import 'bobbing_head.dart';
@@ -12,6 +13,20 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<HomePageContent> {
+  late AudioPlayer player;
+
+  @override
+  void initState() {
+    playMusic();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -51,13 +66,24 @@ class _HomePageContentState extends State<HomePageContent> {
               fontSize: screenHeight / 40,
               fontFamily: 'Blockstepped',
             ),
-            child: const Text(
-              "cambridge ma - synth pop for debutants",
+            child: GestureDetector(
+              onTap: () => {
+                if (player.playing) {player.pause()} else {player.play()}
+              },
+              child: const Text(
+                "cambridge ma - synth pop for debutants",
+              ),
             ),
           )
         ],
       ),
     );
+  }
+
+  Future<void> playMusic() async {
+    player = AudioPlayer();
+    final duration = await player.setFilePath('assets/audio/raining-beat.wav');
+    await player.setLoopMode(LoopMode.all);
   }
 
   Widget mobilePage(double screenHeight) {

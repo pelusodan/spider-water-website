@@ -28,6 +28,9 @@ jobs:
     - name: Build release project
       run: flutter build web --release
 
+    - name: Add CNAME for custom domain
+      run: echo 'spider-water.com' > ./build/web/CNAME
+
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
       with:

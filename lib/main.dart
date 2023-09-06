@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:spider_water/shows.dart';
 
+import 'bobbing_head.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -48,7 +50,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    //todo make mobile friendly version
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -57,21 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          GestureDetector(
-              onTap: () {
-                onUrlTapped("https://www.instagram.com/spiderwaterband/");
-              },
-              child: Tooltip(
-                message: "please god dont press me please man",
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image.asset(
-                    'assets/img/face-pic.png',
-                    width: 300,
-                    height: 300,
-                  ),
-                ),
-              )),
+          const BobbingHead(),
           DefaultTextStyle(
             style: TextStyle(
               color: Colors.black,
@@ -96,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
               fontFamily: 'Blockstepped',
             ),
             child: const Text(
-              "cambridge ma synth pop for debutants",
+              "cambridge ma - synth pop for debutants",
             ),
           ),
         ],

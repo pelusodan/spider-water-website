@@ -1,12 +1,19 @@
 import 'dart:js' as js;
 import 'dart:ui';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:spider_water/insta_content.dart';
+import 'package:spider_water/analytics/analytics.dart';
 
+import 'analytics/firebase_options.dart';
 import 'home/home_page_content.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -44,11 +51,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final analytics =
+      SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
+    analytics.sendEvent(const AnalyticsEvent(name: "Load Home Screen"));
     return mainPageContent(screenWidth, screenHeight);
   }
 

@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:spider_water/insta_content.dart';
 
-import 'home_page_content.dart';
+import 'home/home_page_content.dart';
 
 void main() {
   runApp(const MyApp());

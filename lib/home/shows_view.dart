@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:spider_water/shows.dart';
+import 'package:spider_water/home/shows.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class ShowsView extends StatelessWidget {
   final double screenHeight;

@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:spider_water/shows_view.dart';
+import 'package:spider_water/home/shows_view.dart';
 
 import 'bobbing_head.dart';
 

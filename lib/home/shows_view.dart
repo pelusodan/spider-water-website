@@ -1,13 +1,19 @@
+import 'dart:convert';
+
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:spider_water/home/shows.dart';
 import 'package:spider_water/hover_text.dart';
 
+import '../analytics/analytics.dart';
 import '../main.dart';
 
 class ShowsView extends StatelessWidget {
   final double screenHeight;
   final bool isMobile;
+  final analytics =
+      SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
 
   ShowsView(this.screenHeight, [this.isMobile = false]);
 
@@ -23,6 +29,9 @@ class ShowsView extends StatelessWidget {
         for (var show in futureDates)
           GestureDetector(
             onTap: () {
+              analytics.sendEvent(AnalyticsEvent(
+                  name: "Clicked show",
+                  properties: {"show": jsonEncode(show)}));
               onUrlTapped(show.url);
             },
             child: Wrap(

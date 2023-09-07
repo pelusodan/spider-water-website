@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class BobbingHead extends StatefulWidget {
   const BobbingHead({super.key});

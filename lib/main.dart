@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       home: DefaultTabController(
-          length: 3,
+          length: 1, //todo add a new page
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -92,15 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           Tab(
                             text: "home",
                           ),
-                          Tab(
+                          /*Tab(
                             text: "the vibe",
-                          )
+                          )*/
                         ]),
                   ),
                 )),
             body: TabBarView(children: <Widget>[
               HomePageContent(),
-              InstaContent(),
+              //InstaContent(), todo make ig work here
             ]),
           )),
     );

@@ -1,5 +1,7 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
+import '../analytics/analytics.dart';
 import '../main.dart';
 
 class BobbingHead extends StatefulWidget {
@@ -15,6 +17,8 @@ class _BobbingHeadState extends State<BobbingHead>
     with TickerProviderStateMixin {
   late AnimationController bouncingController;
   late Animation bouncingAnimation;
+  final analytics =
+      SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
 
   @override
   void initState() {
@@ -34,6 +38,8 @@ class _BobbingHeadState extends State<BobbingHead>
       offset: bouncingAnimation.value,
       child: GestureDetector(
           onTap: () {
+            analytics
+                .sendEvent(const AnalyticsEvent(name: "Clicked the head!"));
             onUrlTapped("https://www.instagram.com/spiderwaterband/");
           },
           child: Tooltip(

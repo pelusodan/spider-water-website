@@ -1,8 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spider_water/home/shows_view.dart';
 
+import '../analytics/analytics.dart';
 import '../hover_text.dart';
 import 'bobbing_head.dart';
 
@@ -15,6 +17,9 @@ class HomePageContent extends StatefulWidget {
 
 class _HomePageContentState extends State<HomePageContent> {
   late AudioPlayer player;
+
+  final analytics =
+      SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
 
   @override
   void initState() {
@@ -70,6 +75,8 @@ class _HomePageContentState extends State<HomePageContent> {
               ),
               child: GestureDetector(
                 onTap: () => {
+                  analytics.sendEvent(
+                      const AnalyticsEvent(name: "Clicked the beat")),
                   if (player.playing) {player.pause()} else {player.play()}
                 },
                 child: const Text(

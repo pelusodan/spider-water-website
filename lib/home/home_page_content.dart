@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:spider_water/home/shows_view.dart';
 
+import '../hover_text.dart';
 import 'bobbing_head.dart';
 
 class HomePageContent extends StatefulWidget {
@@ -60,21 +61,21 @@ class _HomePageContentState extends State<HomePageContent> {
           const Padding(padding: EdgeInsets.all(20)),
           ShowsView(screenHeight),
           const Padding(padding: EdgeInsets.all(40)),
-          DefaultTextStyle(
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: screenHeight / 40,
-              fontFamily: 'Blockstepped',
-            ),
-            child: GestureDetector(
-              onTap: () => {
-                if (player.playing) {player.pause()} else {player.play()}
-              },
-              child: const Text(
-                "cambridge ma - synth pop for debutants",
+          HoverText(
+              baseColor: Colors.black,
+              hoverColor: Colors.red,
+              textStyle: TextStyle(
+                fontSize: screenHeight / 40,
+                fontFamily: 'Blockstepped',
               ),
-            ),
-          )
+              child: GestureDetector(
+                onTap: () => {
+                  if (player.playing) {player.pause()} else {player.play()}
+                },
+                child: const Text(
+                  "cambridge ma - synth pop for debutants",
+                ),
+              ))
         ],
       ),
     );

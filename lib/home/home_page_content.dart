@@ -9,6 +9,8 @@ import '../hover_text.dart';
 import 'bobbing_head.dart';
 
 class HomePageContent extends StatefulWidget {
+  const HomePageContent({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _HomePageContentState();

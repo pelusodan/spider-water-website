@@ -5,6 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:spider_water/analytics/analytics.dart';
+import 'package:spider_water/energy/energy.dart';
 
 import 'analytics/firebase_options.dart';
 import 'home/home_page_content.dart';
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       home: DefaultTabController(
-          length: 1, //todo add a new page
+          length: 2,
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -102,15 +103,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           Tab(
                             text: "home",
                           ),
-                          /*Tab(
-                            text: "the vibe",
-                          )*/
+                          Tab(
+                            text: "energy",
+                          )
                         ]),
                   ),
                 )),
-            body: TabBarView(children: <Widget>[
+            body: const TabBarView(children: <Widget>[
               HomePageContent(),
-              //InstaContent(), todo make ig work here
+              EnergyViews(),
             ]),
           )),
     );

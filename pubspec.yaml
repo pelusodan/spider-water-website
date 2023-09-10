@@ -31,6 +31,10 @@ flutter:
     - assets/img/face-pic.png
     - assets/img/damn-attempt.gif
     - assets/audio/raining-beat.wav
+    - assets/img/stew1.jpg
+    - assets/img/stew2.jpg
+    - assets/img/stew3.jpg
+    - assets/img/stew4.jpg
   fonts:
     - family: Blockstepped
       fonts:

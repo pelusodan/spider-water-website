@@ -22,6 +22,7 @@ class _BobbingHeadState extends State<BobbingHead>
 
   @override
   void initState() {
+    prefetchImage();
     startAnimation();
     super.initState();
   }
@@ -73,5 +74,13 @@ class _BobbingHeadState extends State<BobbingHead>
         bouncingController.forward(from: 0.0);
       }
     });
+  }
+
+  Future<void> prefetchImage() async {
+    try {
+      precacheImage(const AssetImage('assets/img/face-pic.png'), context);
+    } catch (e) {
+      debugPrint('Failed to preload head $e');
+    }
   }
 }

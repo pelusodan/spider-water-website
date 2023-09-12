@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 import '../analytics/analytics.dart';
 import '../main.dart';
+import 'face.dart';
 
 class BobbingHead extends StatefulWidget {
   const BobbingHead({super.key});
@@ -19,10 +22,18 @@ class _BobbingHeadState extends State<BobbingHead>
   late Animation bouncingAnimation;
   final analytics =
       SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
+  final random = Random();
+  late Face face;
+
+  @override
+  void didChangeDependencies() {
+    prefetchImage();
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
-    prefetchImage();
+    face = Face.values[random.nextInt(Face.values.length)];
     startAnimation();
     super.initState();
   }
@@ -44,11 +55,11 @@ class _BobbingHeadState extends State<BobbingHead>
             onUrlTapped("https://www.instagram.com/spiderwaterband/");
           },
           child: Tooltip(
-            message: "please god dont press me please man",
+            message: face.tooltip,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image.asset(
-                'assets/img/face-pic.png',
+                face.imgPath,
                 width: 300,
                 height: 300,
               ),
@@ -78,7 +89,10 @@ class _BobbingHeadState extends State<BobbingHead>
 
   Future<void> prefetchImage() async {
     try {
-      precacheImage(const AssetImage('assets/img/face-pic.png'), context);
+      precacheImage(AssetImage(Face.emma.imgPath), context);
+      precacheImage(AssetImage(Face.dan.imgPath), context);
+      precacheImage(AssetImage(Face.chuck.imgPath), context);
+      precacheImage(AssetImage(Face.stin.imgPath), context);
     } catch (e) {
       debugPrint('Failed to preload head $e');
     }

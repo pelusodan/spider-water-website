@@ -39,6 +39,10 @@ final ShowList = [
       title: "THE SIL",
       date: DateTime(2023, 10, 25, 20, 30)),
   Show(
+      url: "https://www.lilypadinman.com/",
+      title: "THE LILYPAD",
+      date: DateTime(2023, 11, 3, 22, 00)),
+  Show(
       url: "https://pawtucketartscollaborative.wildapricot.org/",
       title: "PAWTUCKET ART GALLERY",
       date: DateTime(2023, 12, 9, 19)),

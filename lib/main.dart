@@ -1,4 +1,5 @@
 import 'dart:js' as js;
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -8,6 +9,7 @@ import 'package:spider_water/analytics/analytics.dart';
 import 'package:spider_water/energy/energy.dart';
 
 import 'analytics/firebase_options.dart';
+import 'home/face.dart';
 import 'home/home_page_content.dart';
 
 Future<void> main() async {
@@ -15,7 +17,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class DraggableScrollBehavior extends MaterialScrollBehavior {
@@ -28,7 +30,9 @@ class DraggableScrollBehavior extends MaterialScrollBehavior {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +41,17 @@ class MyApp extends StatelessWidget {
       title: 'SPIDER WATER',
       theme: ThemeData(scaffoldBackgroundColor: Colors.black),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Spider Water'),
+      home: MyHomePage(
+          title: 'Spider Water', faceIndex: random.nextInt(Face.values.length)),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key, required this.title, required this.faceIndex});
 
   final String title;
+  final int faceIndex;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -109,9 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ]),
                   ),
                 )),
-            body: const TabBarView(children: <Widget>[
-              HomePageContent(),
-              EnergyViews(),
+            body: TabBarView(children: <Widget>[
+              HomePageContent(faceIndex: widget.faceIndex),
+              const EnergyViews(),
             ]),
           )),
     );

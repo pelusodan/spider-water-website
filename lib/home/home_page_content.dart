@@ -9,7 +9,9 @@ import '../hover_text.dart';
 import 'bobbing_head.dart';
 
 class HomePageContent extends StatefulWidget {
-  const HomePageContent({super.key});
+  const HomePageContent({super.key, required this.faceIndex});
+
+  final int faceIndex;
 
   @override
   State<StatefulWidget> createState() {
@@ -50,7 +52,7 @@ class _HomePageContentState extends State<HomePageContent> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const BobbingHead(),
+          BobbingHead(faceIndex: widget.faceIndex),
           DefaultTextStyle(
             style: TextStyle(
               color: Colors.black,
@@ -101,7 +103,7 @@ class _HomePageContentState extends State<HomePageContent> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const BobbingHead(),
+          BobbingHead(faceIndex: widget.faceIndex),
           DefaultTextStyle(
             style: TextStyle(
               color: Colors.black,

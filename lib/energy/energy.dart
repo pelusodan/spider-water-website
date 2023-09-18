@@ -16,9 +16,9 @@ class _EnergyViewsState extends State<EnergyViews> {
       SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
     loadImages();
+    super.didChangeDependencies();
   }
 
   @override

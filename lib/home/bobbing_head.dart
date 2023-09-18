@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +6,9 @@ import '../main.dart';
 import 'face.dart';
 
 class BobbingHead extends StatefulWidget {
-  const BobbingHead({super.key});
+  const BobbingHead({super.key, required this.faceIndex});
+
+  final int faceIndex;
 
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +22,6 @@ class _BobbingHeadState extends State<BobbingHead>
   late Animation bouncingAnimation;
   final analytics =
       SpiderAnalytics(firebaseInstance: FirebaseAnalytics.instance);
-  final random = Random();
   late Face face;
 
   @override
@@ -33,7 +32,7 @@ class _BobbingHeadState extends State<BobbingHead>
 
   @override
   void initState() {
-    face = Face.values[random.nextInt(Face.values.length)];
+    face = Face.values[widget.faceIndex];
     startAnimation();
     super.initState();
   }
@@ -89,10 +88,7 @@ class _BobbingHeadState extends State<BobbingHead>
 
   Future<void> prefetchImage() async {
     try {
-      precacheImage(AssetImage(Face.emma.imgPath), context);
-      precacheImage(AssetImage(Face.dan.imgPath), context);
-      precacheImage(AssetImage(Face.chuck.imgPath), context);
-      precacheImage(AssetImage(Face.stin.imgPath), context);
+      precacheImage(AssetImage(face.imgPath), context);
     } catch (e) {
       debugPrint('Failed to preload head $e');
     }

@@ -13,11 +13,11 @@ dependencies:
   animated_text_kit: ^4.2.1
   url_launcher: ^6.1.5
   intl: ^0.18.1
-  flutter_insta: ^1.0.1
   just_audio: ^0.9.34
   cupertino_icons: ^1.0.2
   firebase_analytics: ^10.4.5
   firebase_core: ^2.15.1
+  any_link_preview: ^3.0.1
 
 dev_dependencies:
   flutter_test:

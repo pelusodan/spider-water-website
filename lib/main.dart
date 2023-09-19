@@ -6,6 +6,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:spider_water/analytics/analytics.dart';
+import 'package:spider_water/blog/blog.dart';
 import 'package:spider_water/energy/energy.dart';
 
 import 'analytics/firebase_options.dart';
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       home: DefaultTabController(
-          length: 2,
+          length: 3,
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -111,6 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Tab(
                             text: "energy",
+                          ),
+                          Tab(
+                            text: "blog",
                           )
                         ]),
                   ),
@@ -118,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             body: TabBarView(children: <Widget>[
               HomePageContent(faceIndex: widget.faceIndex),
               const EnergyViews(),
+              const BlogViews()
             ]),
           )),
     );

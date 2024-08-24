@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:spider_water/analytics/analytics.dart';
 import 'package:spider_water/energy/energy.dart';
 
+import 'album/album.dart';
 import 'analytics/firebase_options.dart';
 import 'home/face.dart';
 import 'home/home_page_content.dart';
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       home: DefaultTabController(
-          length: 2,
+          length: 3,
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -111,6 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           Tab(
                             text: "energy",
+                          ),
+                          Tab(
+                            text: "album",
                           )
                         ]),
                   ),
@@ -118,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             body: TabBarView(children: <Widget>[
               HomePageContent(faceIndex: widget.faceIndex),
               const EnergyViews(),
+              const AlbumPage(),
             ]),
           )),
     );

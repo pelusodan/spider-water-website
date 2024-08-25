@@ -113,7 +113,7 @@ class AlbumBody extends StatelessWidget {
     return SizedBox(
         height: screenWidth < 450 ? 800 : screenWidth * .45,
         width: screenWidth < 450 ? 800 : screenWidth * .45,
-        child: Markdown(
+        child: MarkdownBody(
           data: description,
           styleSheet: MarkdownStyleSheet(
               a: style,

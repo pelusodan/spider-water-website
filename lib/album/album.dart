@@ -17,6 +17,24 @@ class AlbumPage extends StatefulWidget {
 
 const style = TextStyle(
   color: Colors.black,
+  fontSize: 14,
+  fontFamily: 'Blockstepped',
+);
+
+const styleh1 = TextStyle(
+  color: Colors.black,
+  fontSize: 28,
+  fontFamily: 'Blockstepped',
+);
+
+const styleh2 = TextStyle(
+  color: Colors.black,
+  fontSize: 24,
+  fontFamily: 'Blockstepped',
+);
+
+const styleh3 = TextStyle(
+  color: Colors.black,
   fontSize: 20,
   fontFamily: 'Blockstepped',
 );
@@ -38,19 +56,9 @@ class _AlbumPageState extends State<AlbumPage> {
 
     analytics.sendEvent(const AnalyticsEvent(name: "Loaded album page"));
 
-    return SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset(
-            'assets/img/album.jpg',
-            width: screenWidth / 3,
-            height: screenHeight,
-          ),
-          const AlbumBody(),
-        ],
-      ),
-    );
+    return screenWidth < 450
+        ? mobilePage(screenHeight)
+        : desktopPage(screenHeight, screenWidth);
   }
 
   Future<void> loadImages() async {
@@ -59,6 +67,40 @@ class _AlbumPageState extends State<AlbumPage> {
     } catch (e) {
       debugPrint('Failed to load and cache image: $e');
     }
+  }
+
+  mobilePage(double screenHeight) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IntrinsicWidth(
+              child: Image.asset(
+            'assets/img/album.jpg',
+            height: screenHeight / 2,
+          )),
+          const AlbumBody(),
+        ],
+      ),
+    );
+  }
+
+  desktopPage(double screenHeight, double screenWidth) {
+    return SingleChildScrollView(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IntrinsicHeight(
+              child: Image.asset(
+            'assets/img/album.jpg',
+            width: screenWidth / 3,
+          )),
+          const AlbumBody(),
+        ],
+      ),
+    );
   }
 }
 
@@ -69,12 +111,17 @@ class AlbumBody extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-        height: 800,
-        width: screenWidth / 2,
+        height: screenWidth < 450 ? 800 : screenWidth * .45,
+        width: screenWidth < 450 ? 800 : screenWidth * .45,
         child: Markdown(
           data: description,
           styleSheet: MarkdownStyleSheet(
-              a: style, h1: style, h2: style, h3: style, h4: style, p: style),
+              a: style,
+              h1: styleh1,
+              h2: styleh2,
+              h3: styleh3,
+              h4: style,
+              p: style),
         ));
   }
 }

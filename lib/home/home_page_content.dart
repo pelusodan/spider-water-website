@@ -84,7 +84,7 @@ class _HomePageContentState extends State<HomePageContent> {
                   if (player.playing) {player.pause()} else {player.play()}
                 },
                 child: const Text(
-                  "cambridge ma - synth pop for debutants",
+                  "cambridge ma - cryptid pop",
                 ),
               ))
         ],

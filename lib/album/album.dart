@@ -73,7 +73,7 @@ class _AlbumPageState extends State<AlbumPage> {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IntrinsicWidth(
               child: Image.asset(
@@ -113,8 +113,9 @@ class AlbumBody extends StatelessWidget {
     return SizedBox(
         height: screenWidth < 450 ? 800 : screenWidth * .45,
         width: screenWidth < 450 ? 800 : screenWidth * .45,
-        child: Markdown(
+        child: MarkdownBody(
           data: description,
+          selectable: true,
           styleSheet: MarkdownStyleSheet(
               a: style,
               h1: styleh1,

@@ -58,7 +58,7 @@ class _AlbumPageState extends State<AlbumPage> {
 
     analytics.sendEvent(const AnalyticsEvent(name: "Loaded album page"));
 
-    return screenWidth < 450
+    return screenWidth < mobileWidthCutoff
         ? mobilePage(screenHeight)
         : desktopPage(screenHeight, screenWidth);
   }
@@ -96,6 +96,7 @@ class _AlbumPageState extends State<AlbumPage> {
           ShowsView(screenHeight, true),
           const SizedBox(height: 30),
           const AlbumBody(),
+          const SizedBox(height: 30)
         ],
       ),
     );
@@ -140,7 +141,7 @@ class AlbumBody extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return IntrinsicHeight(
       child: SizedBox(
-          width: screenWidth < 450 ? 800 : screenWidth * .45,
+          width: screenWidth < mobileWidthCutoff ? 800 : screenWidth * .45,
           child: MarkdownBody(
             data: description,
             selectable: true,

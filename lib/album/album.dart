@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:spider_water/album/album_description.dart';
+import 'dart:math';
 
 import '../analytics/analytics.dart';
+import '../main.dart';
 
 class AlbumPage extends StatefulWidget {
   const AlbumPage({super.key});
@@ -80,6 +82,62 @@ class _AlbumPageState extends State<AlbumPage> {
             'assets/img/album.jpg',
             height: screenHeight / 2,
           )),
+          SizedBox(height: 30),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamingLink(
+                    platformName: "Spotify",
+                    imagePath: "img/spotify.png",
+                    url: "https://open.spotify.com/album/7bzxwIg5XRQwNCrd8gxwEn?si=_llBqDD1R7-7DJ5TUCrAyA",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Apple Music",
+                    imagePath: "img/apple-music.png",
+                    url: "https://music.apple.com/us/album/exit-plan/1770647795",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Bandcamp",
+                    imagePath: "img/bandcamp.png",
+                    url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "YouTube",
+                    imagePath: "img/youtube.png",
+                    url: "https://www.youtube.com/watch?v=3-77YkBhULA&list=OLAK5uy_ktGt8xtGlPMZMnzFrXnSqSkMsM0jGRZDs",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "TIDAL",
+                    imagePath: "img/tidal.png",
+                    url: "https://tidal.com/browse/album/389134256",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Amazon Music",
+                    imagePath: "img/amazon-music.png",
+                    url: "https://amazon.com/music/player/albums/B0DHTKLLW3?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MqOazxG3KKccfu9RIoz8GOCDT",
+                    analytics: analytics
+                ),
+                // SizedBox(width: 10),
+                // StreamingLink(
+                //     platformName: "YouTube Music",
+                //     imagePath: "assets/img/youtube-music.png",
+                //     url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                //     analytics: analytics
+                // ),
+              ]
+          ),
+          SizedBox(height: 30),
           const AlbumBody(),
         ],
       ),
@@ -88,18 +146,78 @@ class _AlbumPageState extends State<AlbumPage> {
 
   desktopPage(double screenHeight, double screenWidth) {
     return SingleChildScrollView(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          IntrinsicHeight(
-              child: Image.asset(
-            'assets/img/album.jpg',
-            width: screenWidth / 3,
-          )),
-          const AlbumBody(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IntrinsicHeight(
+                  child: Image.asset(
+                    'assets/img/album.jpg',
+                    width: screenWidth / 3,
+                  )),
+              const AlbumBody(),
+            ],
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamingLink(
+                    platformName: "Spotify",
+                    imagePath: "img/spotify.png",
+                    url: "https://open.spotify.com/album/7bzxwIg5XRQwNCrd8gxwEn?si=_llBqDD1R7-7DJ5TUCrAyA",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Apple Music",
+                    imagePath: "img/apple-music.png",
+                    url: "https://music.apple.com/us/album/exit-plan/1770647795",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Bandcamp",
+                    imagePath: "img/bandcamp.png",
+                    url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "YouTube",
+                    imagePath: "img/youtube.png",
+                    url: "https://www.youtube.com/watch?v=3-77YkBhULA&list=OLAK5uy_ktGt8xtGlPMZMnzFrXnSqSkMsM0jGRZDs",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "TIDAL",
+                    imagePath: "img/tidal.png",
+                    url: "https://tidal.com/browse/album/389134256",
+                    analytics: analytics
+                ),
+                SizedBox(width: 10),
+                StreamingLink(
+                    platformName: "Amazon Music",
+                    imagePath: "img/amazon-music.png",
+                    url: "https://amazon.com/music/player/albums/B0DHTKLLW3?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MqOazxG3KKccfu9RIoz8GOCDT",
+                    analytics: analytics
+                ),
+                // SizedBox(width: 10),
+                // StreamingLink(
+                //     platformName: "YouTube Music",
+                //     imagePath: "assets/img/youtube-music.png",
+                //     url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                //     analytics: analytics
+                // ),
+              ]
+          ),
+          SizedBox(height: 30),
         ],
-      ),
+      )
     );
   }
 }
@@ -124,5 +242,40 @@ class AlbumBody extends StatelessWidget {
               h4: style,
               p: style),
         ));
+  }
+}
+
+class StreamingLink extends StatelessWidget {
+  final String platformName;
+  final String imagePath;
+  final String url;
+  final SpiderAnalytics analytics;
+
+  // Constructor with named parameters
+  const StreamingLink({
+    Key? key,
+    required this.platformName,
+    required this.imagePath,
+    required this.url,
+    required this.analytics
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+      return GestureDetector(
+        onTap: () {
+          analytics.sendEvent(AnalyticsEvent(
+              name: "Clicked Streaming Link",
+              properties: {"platform": platformName}));
+          onUrlTapped(url);
+        },
+        child: Image.asset(
+          imagePath,
+          height: max(50, screenWidth / 15),
+          width: max(50, screenWidth / 15)
+        )
+    );
   }
 }

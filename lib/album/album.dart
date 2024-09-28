@@ -66,13 +66,13 @@ class _AlbumPageState extends State<AlbumPage> {
   Future<void> loadImages() async {
     try {
       await precacheImage(const AssetImage('assets/img/album.jpg'), context);
-      await precacheImage(const AssetImage('img/amazon-music.png'), context);
-      await precacheImage(const AssetImage('img/apple-music.png'), context);
-      await precacheImage(const AssetImage('img/bandcamp.png'), context);
-      await precacheImage(const AssetImage('img/spotify.png'), context);
-      await precacheImage(const AssetImage('img/tidal.png'), context);
-      await precacheImage(const AssetImage('img/youtube.png'), context);
-      await precacheImage(const AssetImage('img/youtube-music.png'), context);
+      await precacheImage(const AssetImage('assets/img/amazon-music.png'), context);
+      await precacheImage(const AssetImage('assets/img/apple-music.png'), context);
+      await precacheImage(const AssetImage('assets/img/bandcamp.png'), context);
+      await precacheImage(const AssetImage('assets/img/spotify.png'), context);
+      await precacheImage(const AssetImage('assets/img/tidal.png'), context);
+      await precacheImage(const AssetImage('assets/img/youtube.png'), context);
+      await precacheImage(const AssetImage('assets/img/youtube-music.png'), context);
     } catch (e) {
       debugPrint('Failed to load and cache image: $e');
     }
@@ -174,42 +174,42 @@ class StreamingLinkRow extends StatelessWidget {
         children: [
           StreamingLink(
               platformName: "Spotify",
-              imagePath: "img/spotify.png",
+              imagePath: "assets/img/spotify.png",
               url: "https://open.spotify.com/album/7bzxwIg5XRQwNCrd8gxwEn?si=_llBqDD1R7-7DJ5TUCrAyA",
               analytics: analytics
           ),
           const SizedBox(width: 10),
           StreamingLink(
               platformName: "Apple Music",
-              imagePath: "img/apple-music.png",
+              imagePath: "assets/img/apple-music.png",
               url: "https://music.apple.com/us/album/exit-plan/1770647795",
               analytics: analytics
           ),
           const SizedBox(width: 10),
           StreamingLink(
               platformName: "Bandcamp",
-              imagePath: "img/bandcamp.png",
+              imagePath: "assets/img/bandcamp.png",
               url: "https://spiderwater.bandcamp.com/album/exit-plan",
               analytics: analytics
           ),
           const SizedBox(width: 10),
           StreamingLink(
               platformName: "YouTube",
-              imagePath: "img/youtube.png",
+              imagePath: "assets/img/youtube.png",
               url: "https://www.youtube.com/watch?v=3-77YkBhULA&list=OLAK5uy_ktGt8xtGlPMZMnzFrXnSqSkMsM0jGRZDs",
               analytics: analytics
           ),
           const SizedBox(width: 10),
           StreamingLink(
               platformName: "TIDAL",
-              imagePath: "img/tidal.png",
+              imagePath: "assets/img/tidal.png",
               url: "https://tidal.com/browse/album/389134256",
               analytics: analytics
           ),
           const SizedBox(width: 10),
           StreamingLink(
               platformName: "Amazon Music",
-              imagePath: "img/amazon-music.png",
+              imagePath: "assets/img/amazon-music.png",
               url: "https://amazon.com/music/player/albums/B0DHTKLLW3?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MqOazxG3KKccfu9RIoz8GOCDT",
               analytics: analytics
           ),

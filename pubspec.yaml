@@ -40,6 +40,13 @@ flutter:
     - assets/img/stin.png
     - assets/img/chuck.png
     - assets/img/album.jpg
+    - assets/img/amazon-music.png
+    - assets/img/apple-music.png
+    - assets/img/bandcamp.png
+    - assets/img/spotify.png
+    - assets/img/tidal.png
+    - assets/img/youtube-music.png
+    - assets/img/youtube.png
   fonts:
     - family: Blockstepped
       fonts:

@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       theme: ThemeData(
         tabBarTheme: TabBarTheme(
           indicator: const UnderlineTabIndicator(
-            borderSide: BorderSide(color: Colors.transparent),
+            borderSide: BorderSide(color: Colors.black),
           ),
           labelColor: Colors.black,
           labelStyle: TextStyle(
@@ -93,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       home: DefaultTabController(
           length: 3,
+          initialIndex: 2, // make album the default page during promo cycle
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(

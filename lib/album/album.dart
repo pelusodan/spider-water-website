@@ -66,6 +66,13 @@ class _AlbumPageState extends State<AlbumPage> {
   Future<void> loadImages() async {
     try {
       await precacheImage(const AssetImage('assets/img/album.jpg'), context);
+      await precacheImage(const AssetImage('assets/img/amazon-music.png'), context);
+      await precacheImage(const AssetImage('assets/img/apple-music.png'), context);
+      await precacheImage(const AssetImage('assets/img/bandcamp.png'), context);
+      await precacheImage(const AssetImage('assets/img/spotify.png'), context);
+      await precacheImage(const AssetImage('assets/img/tidal.png'), context);
+      await precacheImage(const AssetImage('assets/img/youtube.png'), context);
+      await precacheImage(const AssetImage('assets/img/youtube-music.png'), context);
     } catch (e) {
       debugPrint('Failed to load and cache image: $e');
     }
@@ -128,11 +135,15 @@ class _AlbumPageState extends State<AlbumPage> {
                     url: "https://amazon.com/music/player/albums/B0DHTKLLW3?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MqOazxG3KKccfu9RIoz8GOCDT",
                     analytics: analytics
                 ),
+
+                // commenting out youtube music link for now since it will be
+                // confusing with youtube also there, until we add labels
+
                 // SizedBox(width: 10),
                 // StreamingLink(
                 //     platformName: "YouTube Music",
                 //     imagePath: "assets/img/youtube-music.png",
-                //     url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                //     url: "https://music.youtube.com/playlist?list=OLAK5uy_nBWcRM4HPTHz-itN5NxnQJlodCbCwiLpE&si=0PbG2sGknOBh7qkZ",
                 //     analytics: analytics
                 // ),
               ]
@@ -206,11 +217,15 @@ class _AlbumPageState extends State<AlbumPage> {
                     url: "https://amazon.com/music/player/albums/B0DHTKLLW3?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MqOazxG3KKccfu9RIoz8GOCDT",
                     analytics: analytics
                 ),
+
+                // commenting out youtube music link for now since it will be
+                // confusing with youtube also there, until we add labels
+
                 // SizedBox(width: 10),
                 // StreamingLink(
                 //     platformName: "YouTube Music",
                 //     imagePath: "assets/img/youtube-music.png",
-                //     url: "https://spiderwater.bandcamp.com/album/exit-plan",
+                //     url: "https://music.youtube.com/playlist?list=OLAK5uy_nBWcRM4HPTHz-itN5NxnQJlodCbCwiLpE&si=0PbG2sGknOBh7qkZ",
                 //     analytics: analytics
                 // ),
               ]

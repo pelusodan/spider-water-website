@@ -27,39 +27,42 @@ class ShowsView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         for (var show in futureDates)
-          GestureDetector(
-            onTap: () {
-              analytics.sendEvent(AnalyticsEvent(
-                  name: "Clicked show",
-                  properties: {"show": jsonEncode(show)}));
-              onUrlTapped(show.url);
-            },
-            child: Wrap(
-              direction: Axis.horizontal,
-              children: [
-                HoverText(
-                    baseColor: Colors.black,
-                    hoverColor: Colors.red,
-                    textStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: isMobile ? 20 : screenHeight / 23,
-                      fontFamily: 'Blockstepped',
-                    ),
-                    child: Text("-${show.title}")),
-                const Padding(padding: EdgeInsets.all(5)),
-                HoverText(
-                    baseColor: Colors.red,
-                    hoverColor: Colors.black,
-                    textStyle: TextStyle(
-                      color: Colors.red,
-                      fontSize: isMobile ? 16 : screenHeight / 30,
-                      fontFamily: 'Blockstepped',
-                    ),
-                    child: Text(
-                      "${formatter.format(show.date)} @ ${DateFormat.jm().format(show.date)}",
-                    ))
-              ],
-            ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () {
+                analytics.sendEvent(AnalyticsEvent(
+                    name: "Clicked show",
+                    properties: {"show": jsonEncode(show)}));
+                onUrlTapped(show.url);
+              },
+              child: Wrap(
+                direction: Axis.horizontal,
+                children: [
+                  HoverText(
+                      baseColor: Colors.black,
+                      hoverColor: Colors.red,
+                      textStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: isMobile ? 20 : screenHeight / 23,
+                        fontFamily: 'Blockstepped',
+                      ),
+                      child: Text("-${show.title}")),
+                  const Padding(padding: EdgeInsets.all(5)),
+                  HoverText(
+                      baseColor: Colors.red,
+                      hoverColor: Colors.black,
+                      textStyle: TextStyle(
+                        color: Colors.red,
+                        fontSize: isMobile ? 16 : screenHeight / 30,
+                        fontFamily: 'Blockstepped',
+                      ),
+                      child: Text(
+                        "${formatter.format(show.date)} @ ${DateFormat.jm().format(show.date)}",
+                      ))
+                ],
+              ),
+            )
           )
       ],
     );

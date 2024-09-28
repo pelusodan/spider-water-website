@@ -6,6 +6,7 @@ import 'package:spider_water/home/shows_view.dart';
 
 import '../analytics/analytics.dart';
 import '../hover_text.dart';
+import '../main.dart';
 import 'bobbing_head.dart';
 
 class HomePageContent extends StatefulWidget {
@@ -42,7 +43,7 @@ class _HomePageContentState extends State<HomePageContent> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return screenWidth < 450
+    return screenWidth < mobileWidthCutoff
         ? mobilePage(screenHeight)
         : desktopPage(screenHeight, screenWidth);
   }

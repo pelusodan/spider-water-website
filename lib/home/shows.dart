@@ -51,7 +51,7 @@ final ShowList = [
       title: "PAWTUCKET ART GALLERY",
       date: DateTime(2023, 12, 9, 19)),
   Show(
-      url: "https://regenttheatre.com/",
+      url: "https://ci.ovationtix.com/36186/production/1213789?performanceId=11525072/",
       title: "ALBUM RELEASE SHOW @ REGENT",
-      date: DateTime(2024, 10, 12, 19)),
+      date: DateTime(2024, 10, 12, 20)),
 ];

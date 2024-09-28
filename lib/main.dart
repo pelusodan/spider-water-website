@@ -133,3 +133,5 @@ void onUrlTapped(String? repoLink) {
   if (repoLink == null) return;
   js.context.callMethod('open', [repoLink]);
 }
+
+const mobileWidthCutoff = 600;

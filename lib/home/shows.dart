@@ -54,4 +54,8 @@ final ShowList = [
       url: "https://ci.ovationtix.com/36186/production/1213789?performanceId=11525072",
       title: "ALBUM RELEASE SHOW @ REGENT",
       date: DateTime(2024, 10, 12, 20)),
+  Show(
+      url: "https://obrienspubboston.com/show/133938/",
+      title: "O'BRIEN'S PUB",
+      date: DateTime(2025, 1, 6, 20)),
 ];

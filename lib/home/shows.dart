@@ -57,5 +57,5 @@ final ShowList = [
   Show(
       url: "https://obrienspubboston.com/show/133938/",
       title: "O'BRIEN'S PUB",
-      date: DateTime(2025, 1, 6, 20)),
+      date: DateTime(2025, 1, 13, 20)),
 ];

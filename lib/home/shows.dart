@@ -62,4 +62,8 @@ final ShowList = [
       url: "https://obrienspubboston.com/show/spider-water-seph-the-nomads-rose-wood-park-anna-gurl/",
       title: "O'BRIEN'S PUB",
       date: DateTime(2025, 2, 19, 21)),
+  Show(
+    url: "https://www.thecantablounge.com/",
+    title: "CANTAB UNDERGROUND",
+    date: DateTime(2025, 5, 29, 20)),
 ];

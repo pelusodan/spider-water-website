@@ -63,6 +63,10 @@ final ShowList = [
       title: "O'BRIEN'S PUB",
       date: DateTime(2025, 2, 19, 21)),
   Show(
+      url: "https://uniontavern-somerville.com/",
+      title: "UNION TAVERN",
+      date: DateTime(2025, 4, 11, 20)),
+  Show(
     url: "https://www.thecantablounge.com/",
     title: "CANTAB UNDERGROUND",
     date: DateTime(2025, 5, 29, 20)),

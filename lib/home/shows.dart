@@ -70,12 +70,17 @@ final ShowList = [
       url: "https://uniontavern-somerville.com/",
       title: "UNION TAVERN",
       date: DateTime(2025, 4, 11, 20)),
+/* show got rescheduled
   Show(
       url: "https://www.thecantablounge.com/",
       title: "CANTAB LOUNGE",
-      date: DateTime(2025, 4, 22, 20)),
+      date: DateTime(2025, 4, 22, 20)),*/
   Show(
-    url: "https://www.thecantablounge.com/",
+      url: "https://uniontavern-somerville.com/",
+      title: "UNION TAVERN",
+      date: DateTime(2025, 5, 2, 20)),
+  Show(
+    url: "https://tunehatch.com/shows/148458303",
     title: "CANTAB UNDERGROUND",
     date: DateTime(2025, 5, 29, 20)),
 ];

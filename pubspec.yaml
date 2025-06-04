@@ -47,6 +47,9 @@ flutter:
     - assets/img/tidal.png
     - assets/img/youtube-music.png
     - assets/img/youtube.png
+    - assets/img/dan-union.jpg
+    - assets/img/emma-union.jpg
+    - assets/img/stew5.jpg
   fonts:
     - family: Blockstepped
       fonts:

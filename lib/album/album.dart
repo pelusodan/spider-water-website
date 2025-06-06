@@ -139,8 +139,7 @@ class AlbumBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return IntrinsicHeight(
-      child: SizedBox(
+    return SizedBox(
           width: screenWidth < mobileWidthCutoff ? 800 : screenWidth * .45,
           child: MarkdownBody(
             data: description,
@@ -153,8 +152,7 @@ class AlbumBody extends StatelessWidget {
                 h4: style,
                 p: style),
           )
-      )
-    );
+      );
   }
 }
 

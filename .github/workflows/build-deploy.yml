@@ -20,13 +20,13 @@ jobs:
     - name: Install Flutter
       uses: subosito/flutter-action@v1
       with:
-        flutter-version: '3.24.1'
+        flutter-version: '3.32.0'
     
     - name: Get dependencies
       run: flutter pub get
     
     - name: Build release project
-      run: flutter build web --release
+      run: flutter build web --release --no-source-maps
 
     - name: create cname
       run: echo 'spider-water.com' > ./build/web/CNAME

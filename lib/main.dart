@@ -1,12 +1,12 @@
-import 'dart:js' as js;
 import 'dart:math';
 import 'dart:ui';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Standard import
 import 'package:spider_water/analytics/analytics.dart';
 import 'package:spider_water/energy/energy.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'album/album.dart';
 import 'analytics/firebase_options.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp( // This is the single, root MaterialApp
       scrollBehavior: DraggableScrollBehavior(),
       title: 'SPIDER WATER',
       theme: ThemeData(scaffoldBackgroundColor: Colors.black),
@@ -67,14 +67,16 @@ class _MyHomePageState extends State<MyHomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     analytics.sendEvent(const AnalyticsEvent(name: "Load Home Screen"));
+    // mainPageContent now returns the content to be placed *inside* MyApp's MaterialApp
     return mainPageContent(screenWidth, screenHeight);
   }
 
+  // Modified to remove nested MaterialApp and use a Theme widget for TabBarTheme
   Widget mainPageContent(double screenWidth, double screenHeight) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        tabBarTheme: TabBarTheme(
+    // The specific theme for the TabBar is now applied via a Theme widget
+    return Theme(
+      data: ThemeData( // This ThemeData is specifically for the TabBar scope
+        tabBarTheme: TabBarThemeData(
           indicator: const UnderlineTabIndicator(
             borderSide: BorderSide(color: Colors.black),
           ),
@@ -91,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      home: DefaultTabController(
+      child: DefaultTabController(
           length: 3,
-          initialIndex: 2, // make album the default page during promo cycle
+          initialIndex: 0, // make album the default page during promo cycle
           child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -102,12 +104,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Colors.white,
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(screenHeight / 16),
-                  child: const Align(
+                  // Removed 'const' from Align because screenHeight makes its child non-constant.
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: TabBar(
                         isScrollable: true,
                         tabAlignment: TabAlignment.start,
-                        tabs: <Widget>[
+                        tabs: const <Widget>[ // Added const here as Tabs are constant
                           Tab(
                             text: "home",
                           ),
@@ -130,9 +133,27 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-void onUrlTapped(String? repoLink) {
-  if (repoLink == null) return;
-  js.context.callMethod('open', [repoLink]);
+Future<void> onUrlTapped(String? urlString) async {
+  if (urlString == null || urlString.isEmpty) {
+    debugPrint('URL is null or empty, cannot launch.');
+    return;
+  }
+  final Uri uri = Uri.parse(urlString);
+  if (await canLaunchUrl(uri)) {
+    try {
+      final bool launched = await launchUrl(
+        uri,
+        webOnlyWindowName: '_blank',
+      );
+      if (!launched) {
+        debugPrint('Could not launch $uri');
+      }
+    } catch (e) {
+      debugPrint('Error launching $uri: $e');
+    }
+  } else {
+    debugPrint('Cannot launch $uri');
+  }
 }
 
 const mobileWidthCutoff = 600;

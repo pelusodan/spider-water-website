@@ -1,4 +1,3 @@
-import 'dart:js' as js;
 import 'dart:math';
 import 'dart:ui';
 
@@ -7,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:spider_water/analytics/analytics.dart';
 import 'package:spider_water/energy/energy.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'album/album.dart';
 import 'analytics/firebase_options.dart';
@@ -130,9 +130,36 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-void onUrlTapped(String? repoLink) {
-  if (repoLink == null) return;
-  js.context.callMethod('open', [repoLink]);
+// Keeping onUrlTapped as per the file content read in this turn.
+// If you've updated this to launchTappedUrl locally, this will revert it.
+// Consider this if you copy-paste the whole block.
+Future<void> onUrlTapped(String? urlString) async {
+  if (urlString == null || urlString.isEmpty) {
+    // Optionally, log an error or inform the user
+    debugPrint('URL is null or empty, cannot launch.');
+    return;
+  }
+  final Uri uri = Uri.parse(urlString);
+  if (await canLaunchUrl(uri)) {
+    try {
+      final bool launched = await launchUrl(
+        uri,
+        // webOnlyWindowName can be used to specify how the link opens on web
+        // e.g., '_blank' for a new tab, '_self' for the same frame
+        webOnlyWindowName: '_blank',
+      );
+      if (!launched) {
+        debugPrint('Could not launch $uri');
+        // Optionally, inform the user
+      }
+    } catch (e) {
+      debugPrint('Error launching $uri: $e');
+      // Optionally, inform the user
+    }
+  } else {
+    debugPrint('Cannot launch $uri');
+    // Optionally, inform the user
+  }
 }
 
 const mobileWidthCutoff = 600;

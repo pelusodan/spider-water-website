@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Standard import
 import 'package:spider_water/analytics/analytics.dart';
 import 'package:spider_water/energy/energy.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp( // This is the single, root MaterialApp
       scrollBehavior: DraggableScrollBehavior(),
       title: 'SPIDER WATER',
       theme: ThemeData(scaffoldBackgroundColor: Colors.black),
@@ -67,13 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     analytics.sendEvent(const AnalyticsEvent(name: "Load Home Screen"));
+    // mainPageContent now returns the content to be placed *inside* MyApp's MaterialApp
     return mainPageContent(screenWidth, screenHeight);
   }
 
+  // Modified to remove nested MaterialApp and use a Theme widget for TabBarTheme
   Widget mainPageContent(double screenWidth, double screenHeight) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+    // The specific theme for the TabBar is now applied via a Theme widget
+    return Theme(
+      data: ThemeData( // This ThemeData is specifically for the TabBar scope
         tabBarTheme: TabBarThemeData(
           indicator: const UnderlineTabIndicator(
             borderSide: BorderSide(color: Colors.black),
@@ -91,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      home: DefaultTabController(
+      child: DefaultTabController(
           length: 3,
           initialIndex: 0, // make album the default page during promo cycle
           child: Scaffold(
@@ -102,12 +104,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: Colors.white,
                 bottom: PreferredSize(
                   preferredSize: Size.fromHeight(screenHeight / 16),
-                  child: const Align(
+                  // Removed 'const' from Align because screenHeight makes its child non-constant.
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: TabBar(
                         isScrollable: true,
                         tabAlignment: TabAlignment.start,
-                        tabs: <Widget>[
+                        tabs: const <Widget>[ // Added const here as Tabs are constant
                           Tab(
                             text: "home",
                           ),
@@ -130,12 +133,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// Keeping onUrlTapped as per the file content read in this turn.
-// If you've updated this to launchTappedUrl locally, this will revert it.
-// Consider this if you copy-paste the whole block.
 Future<void> onUrlTapped(String? urlString) async {
   if (urlString == null || urlString.isEmpty) {
-    // Optionally, log an error or inform the user
     debugPrint('URL is null or empty, cannot launch.');
     return;
   }
@@ -144,21 +143,16 @@ Future<void> onUrlTapped(String? urlString) async {
     try {
       final bool launched = await launchUrl(
         uri,
-        // webOnlyWindowName can be used to specify how the link opens on web
-        // e.g., '_blank' for a new tab, '_self' for the same frame
         webOnlyWindowName: '_blank',
       );
       if (!launched) {
         debugPrint('Could not launch $uri');
-        // Optionally, inform the user
       }
     } catch (e) {
       debugPrint('Error launching $uri: $e');
-      // Optionally, inform the user
     }
   } else {
     debugPrint('Cannot launch $uri');
-    // Optionally, inform the user
   }
 }
 

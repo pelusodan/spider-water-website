@@ -83,4 +83,12 @@ final ShowList = [
     url: "https://tunehatch.com/shows/148458303",
     title: "CANTAB UNDERGROUND",
     date: DateTime(2025, 5, 29, 20)),
+  Show(
+      url: null,
+      title: "FORREST FEST",
+      date: DateTime(2025, 8, 23, 13, 45)),
+  Show(
+    url: "https://www.eventbrite.com/e/granite-and-gritspider-waterandey-tickets-1599118740199?aff=oddtdtcreator",
+    title: "THE JUNGLE",
+    date: DateTime(2025, 9, 28, 17)),
 ];

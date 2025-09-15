@@ -91,4 +91,9 @@ final ShowList = [
     url: "https://www.eventbrite.com/e/granite-and-gritspider-waterandey-tickets-1599118740199?aff=oddtdtcreator",
     title: "THE JUNGLE",
     date: DateTime(2025, 9, 28, 17)),
+  Show(
+    url: "https://tunehatch.com/shows/221203076",
+    title: "CANTAB UNDERGROUND",
+    date: DateTime(2025,10,3,19,0)
+  ),
 ];

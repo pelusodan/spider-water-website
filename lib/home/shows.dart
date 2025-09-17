@@ -96,4 +96,9 @@ final ShowList = [
     title: "CANTAB UNDERGROUND",
     date: DateTime(2025,10,3,19,0)
   ),
+  Show(
+    url: null,
+    title: "UNION TAVERN",
+    date: DateTime(2025, 11, 7, 20),
+  )
 ];

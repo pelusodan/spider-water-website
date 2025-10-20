@@ -100,5 +100,9 @@ final ShowList = [
     url: null,
     title: "UNION TAVERN",
     date: DateTime(2025, 11, 7, 20),
-  )
+  ),
+  Show(
+      url: "https://www.eventbrite.com/e/spiderwaterlunch-ladieslongnecktba-tickets-1839603877719?aff=oddtdtcreator",
+      title: "THE JUNGLE w Special Guest!",
+      date: DateTime(2025, 11, 28, 21)),
 ];
